@@ -1,2 +1,2 @@
 # krunker
-A repository for online base game named Krunker.io
+A repository for a multiplayer game named Krunker.io's script.
