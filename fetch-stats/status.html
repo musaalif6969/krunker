@@ -1,0 +1,43 @@
+  <style>
+  @keyframes paperDisappear {
+    0% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: translateY(0) rotate(0deg) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg) scale(1);
+    }
+  }
+
+  .statusEmoji {
+    animation: paperDisappear 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .statusContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #statusText, #versionText {
+    font-size: 12px;
+  }
+
+  #versionText {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="statusContainer">
+  <p id="statusText" style="margin: 0;" class="Status">
+    Status:
+    <span class="statusEmoji">🟢</span>
+    Safe
+  </p>
+  <p id="versionText" style="margin: 0;">V.1.0.0</p>
+</div>
