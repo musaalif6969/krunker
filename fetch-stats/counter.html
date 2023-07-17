@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+</head>
+<body>
+  <p id="counter">Loading...</p>
+
+  <script>
+    // Replace with your Firebase project's configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBdPLYqOu3XTGho4wuxjB9jr0ANO0CJXrI",
+      authDomain: "onlineusercounter-krunker.firebaseapp.com",
+      databaseURL: "https://onlineusercounter-krunker-default-rtdb.firebaseio.com",
+      projectId: "onlineusercounter-krunker",
+      storageBucket: "onlineusercounter-krunker.appspot.com",
+      messagingSenderId: "882231111656",
+      appId: "1:882231111656:web:1b5644349dd3c3cef57e5d"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to the online users count in the database
+    var counterRef = firebase.database().ref("online_users");
+
+    // Increase the count when a user opens the page
+    counterRef.transaction(function (currentCount) {
+      return (currentCount || 0) + 1;
+    });
+
+    // Decrease the count when a user closes the page
+    window.onbeforeunload = function () {
+      counterRef.transaction(function (currentCount) {
+        return (currentCount || 0) - 1;
+      });
+    };
+
+    // Listen for changes in the counter and update the HTML
+    counterRef.on("value", function (snapshot) {
+      var count = snapshot.val();
+      document.getElementById("counter").innerText = "Online users: " + count;
+    });
+  </script>
+</body>
+</html>
